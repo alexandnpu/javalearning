@@ -7,7 +7,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.oio.OioServerSocketChannel;
 
 import java.net.InetSocketAddress;
 
@@ -25,7 +24,8 @@ public class AlexServer {
             b.localAddress(new InetSocketAddress(20000));
             b.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new EchoHandler());
+                    ch.pipeline().addLast(new EchoByteToMsgDecoder());
+                    ch.pipeline().addLast(new EchoMsgToMsgDecoder());
                 }
             });
 

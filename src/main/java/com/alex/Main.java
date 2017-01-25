@@ -1,10 +1,12 @@
 package com.alex;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+//import com.alex.AlexHello;
+
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.RunnableFuture;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zhengchao on 16/10/1.
@@ -30,6 +32,17 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println(getHashCode("7950594"));
+//        AlexHello.sayHi("my god");
+        BlockingDeque<Runnable> queue = new LinkedBlockingDeque<>(100);
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(
+                1, 2, 3, TimeUnit.SECONDS, queue
+        );
+
+        pool.execute(new Runnable() {
+            @Override public void run() {
+                System.out.println("hello");
+            }
+        });
 
     }
 

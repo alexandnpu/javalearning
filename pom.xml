@@ -32,6 +32,11 @@
             <artifactId>postgresql</artifactId>
             <version>9.4.1212</version>
         </dependency>
+        <dependency>
+            <groupId>com.alex</groupId>
+            <artifactId>maventest</artifactId>
+            <version>1.1-snapshot</version>
+        </dependency>
     </dependencies>
 
 
